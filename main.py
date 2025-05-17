@@ -58,9 +58,10 @@ while True:
     elif muvelet == 'eszközök':
         print()
         print('Eddigi költségek kiírása: költségek')
+        print('Eddigi legdrágább vásárlás kiírása: legdrágább')
         print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
-        while eszkoz not in ['költségek','']:
+        while eszkoz not in ['költségek','','legdrágább']:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
@@ -70,6 +71,16 @@ while True:
             print(f'Sikeres kilépés!')
             print()
             break
+        elif eszkoz == 'legdrágább':
+            print()
+            ledragabb_dolog = -100
+            ledragabb_dict = {}
+            for elem in koltsegek:
+                if elem['költség_ára'] > ledragabb_dolog:
+                    ledragabb_dolog = elem['költség_ára']
+                    ledragabb_dict = elem
+            print(f'Legdrágább költekezés: {ledragabb_dict['költség_neve']} - {ledragabb_dict['költség_ára']}Ft.')
+            print()
         else:
             eddigi_koltesegek = 0
             for elem in koltsegek:

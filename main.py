@@ -10,7 +10,19 @@ with open('data.txt','r',encoding='utf-8') as file_rd:
         koltseg['költség_ára'] = int(data[2])
         koltsegek.append(koltseg)
         koltseg = {}
-    
+
+honapok = [
+    "január", "február", "március", "április", "május", "június",
+    "július", "augusztus", "szeptember", "október", "november", "december"
+]
+honapok_szam = []
+for i in range(1,13):
+    egesz = '0'
+    egesz += f'{i}'
+    honapok_szam.append(egesz)
+
+# print([honapok[1]],honapok_szam[1])    
+
 print()
 print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (készítette: Szabó Tamás ©)')
 print()
@@ -72,9 +84,12 @@ while True:
         print()
         print('Az átlag költség kiszámítása: átlag')
         print()
+        print()
+        print('Az havi költség keresése: hónap')
+        print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
         print()
-        while eszkoz not in ['költségek','','legdrágább','kereső','átlag']:
+        while eszkoz not in ['költségek','','legdrágább','kereső','átlag','hónap']:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
@@ -93,6 +108,10 @@ while True:
                 db += 1
             print(f'Az átlag költsége: {round((osz_koltseg / db),2)}')
             print()
+        elif eszkoz == 'hónap':
+            print()
+            keresett_honap = input('Kérem adja meg a keresett hónap nevét: ').lower().strip()
+            
         elif eszkoz == 'kereső':
             now = datetime.now()
             adat_bevitel_datum = now.strftime('%Y-%m-%d')

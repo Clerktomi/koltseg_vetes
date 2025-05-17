@@ -110,14 +110,17 @@ while True:
             print()
         elif eszkoz == 'hónap':
             print()
-            # keresett_honap = input('Kérem adja meg a keresett hónap nevét: ').lower().strip()
-            # for i in range(len(honapok)):
-            #     if honapok[i] == keresett_honap:
-            #         for elem in koltsegek:
-            #             datum = elem['költség_dátuma'].strip('-')
-            #             if datum[1] == honapok_szam[i]:
-            #                 print(f'A költség leírása: {koltseg['költség_neve']} dátum: {koltseg['költség_dátuma']} {koltseg['költség_ára']}')
-            
+            keresett_honap = input('Kérem adja meg a keresett hónapot (pl: 05): ').lower().strip()
+            ossz_koltes = 0
+            for elem in koltsegek:
+                honap = elem['költség_dátuma'].split('-')
+                if honap[1] == keresett_honap:
+                    ossz_koltes += elem['költség_ára']
+                    print()
+                    print(f'A költség leírása: {elem['költség_neve']} dátum: {elem['költség_dátuma']} {elem['költség_ára']}')
+            print('- '*15)
+            print(f'Összesen: {ossz_koltes}Ft.')
+            print()
         elif eszkoz == 'kereső':
             now = datetime.now()
             adat_bevitel_datum = now.strftime('%Y-%m-%d')

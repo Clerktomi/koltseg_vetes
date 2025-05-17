@@ -58,10 +58,14 @@ while True:
     elif muvelet == 'eszközök':
         print()
         print('Eddigi költségek kiírása: költségek')
+        print()
         print('Eddigi legdrágább vásárlás kiírása: legdrágább')
         print()
+        print('Egy adott napra való keresés: kereső')
+        print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
-        while eszkoz not in ['költségek','','legdrágább']:
+        print()
+        while eszkoz not in ['költségek','','legdrágább','kereső']:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
@@ -71,6 +75,15 @@ while True:
             print(f'Sikeres kilépés!')
             print()
             break
+        elif eszkoz == 'kereső':
+            now = datetime.now()
+            adat_bevitel_datum = now.strftime('%Y-%m-%d')
+            datum_kereso = input(f'Kérem a keresett dátumot (minta: {adat_bevitel_datum}): ')
+            for elem in koltsegek:
+                if elem['költség_dátuma'] == datum_kereso:
+                    print()
+                    print(f'Erre költött ezen a napon: {datum_kereso} | {elem['költség_neve']} {elem['költség_ára']}Ft.')
+                    print()
         elif eszkoz == 'legdrágább':
             print()
             ledragabb_dolog = -100

@@ -50,8 +50,14 @@ while True:
             adat_bevitel_datum = now.strftime('%Y-%m-%d')
             print('\nA mai dátum sikeresen el lett mentve!\n')
 
-        adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))     
-
+        adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))   
+        uj_koltseg = {
+            'költség_neve': adat_bevitel_leiras,
+            'költség_dátuma': adat_bevitel_datum,
+            'költség_ára': adat_bevitel_ar
+        }           
+        koltsegek.append(uj_koltseg)
+        uj_koltseg = {}
         with open('data.txt','a',encoding='utf-8') as file_add:
             print(f'{adat_bevitel_leiras};{adat_bevitel_datum};{adat_bevitel_ar}', file=file_add)
 

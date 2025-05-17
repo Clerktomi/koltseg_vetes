@@ -77,6 +77,8 @@ while True:
         print()
         print('Eddigi költségek kiírása: költségek')
         print()
+        print(f'Meglévő költség keresése: keres')
+        print()
         print('Eddigi legdrágább vásárlás kiírása: legdrágább')
         print()
         print('Egy adott napra való keresés: kereső')
@@ -89,7 +91,7 @@ while True:
         print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
         print()
-        while eszkoz not in ['költségek','','legdrágább','kereső','átlag','hónap']:
+        while eszkoz not in ['költségek','','legdrágább','kereső','átlag','hónap','keres']:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
@@ -99,6 +101,12 @@ while True:
             print(f'Sikeres kilépés!')
             print()
             break
+        elif eszkoz == 'keres':
+            keresett_vasarlas = input('Kérem adja meg a vásrás nevét: ').lower().strip()
+            for elem in koltsegek:
+                if elem['költség_neve'] == keresett_vasarlas:
+                    print(f'A költség leírása: {elem['költség_neve']} dátum: {elem['költség_dátuma']} {elem['költség_ára']}')
+                    print()
         elif eszkoz == 'átlag':
             print()
             osz_koltseg = 0

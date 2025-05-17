@@ -110,7 +110,13 @@ while True:
             print()
         elif eszkoz == 'hónap':
             print()
-            keresett_honap = input('Kérem adja meg a keresett hónap nevét: ').lower().strip()
+            # keresett_honap = input('Kérem adja meg a keresett hónap nevét: ').lower().strip()
+            # for i in range(len(honapok)):
+            #     if honapok[i] == keresett_honap:
+            #         for elem in koltsegek:
+            #             datum = elem['költség_dátuma'].strip('-')
+            #             if datum[1] == honapok_szam[i]:
+            #                 print(f'A költség leírása: {koltseg['költség_neve']} dátum: {koltseg['költség_dátuma']} {koltseg['költség_ára']}')
             
         elif eszkoz == 'kereső':
             now = datetime.now()

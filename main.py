@@ -63,9 +63,12 @@ while True:
         print()
         print('Egy adott napra való keresés: kereső')
         print()
+        print()
+        print('Az átlag költség kiszámítása: átlag')
+        print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
         print()
-        while eszkoz not in ['költségek','','legdrágább','kereső']:
+        while eszkoz not in ['költségek','','legdrágább','kereső','átlag']:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
@@ -75,6 +78,15 @@ while True:
             print(f'Sikeres kilépés!')
             print()
             break
+        elif eszkoz == 'átlag':
+            print()
+            osz_koltseg = 0
+            db = 0
+            for elem in koltsegek:
+                osz_koltseg += elem['költség_ára']
+                db += 1
+            print(f'Az átlag költsége: {round((osz_koltseg / db),2)}')
+            print()
         elif eszkoz == 'kereső':
             now = datetime.now()
             adat_bevitel_datum = now.strftime('%Y-%m-%d')

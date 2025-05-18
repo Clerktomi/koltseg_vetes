@@ -2,12 +2,15 @@ from datetime import datetime
 koltsegek = []
 koltseg = {}
 
+kategoriak = ['utazás','élelmiszer','hobbi']  
+
 with open('data.txt','r',encoding='utf-8') as file_rd:
     for sor in file_rd:
         data = sor.strip().split(';')
         koltseg['költség_neve'] = data[0]
         koltseg['költség_dátuma'] = data[1]
         koltseg['költség_ára'] = int(data[2])
+        koltseg['költség_kategoria'] = data[3]
         koltsegek.append(koltseg)
         koltseg = {}
 
@@ -49,12 +52,33 @@ while True:
         else:
             for koltseg in koltsegek:
                 print()
-                print(f'A költség leírása: {koltseg['költség_neve']} dátum: {koltseg['költség_dátuma']} {koltseg['költség_ára']}')
+                print(f'A költség leírása: {koltseg['költség_neve']} | dátum: {koltseg['költség_dátuma']} | Ár: {koltseg['költség_ára']} | kategória: {koltseg['költség_kategoria']}')
                 print()
     elif muvelet == '+':
         print()
         adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy): ').strip()
         print()
+        while True:
+            adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
+            
+            if adat_bevital_kategoria == 'kategoria':
+                print('\nElérhető kategóriák:')
+                for kategoria in kategoriak:
+                    print(f'{kategoria}')
+                print()
+                continue 
+            
+            while adat_bevital_kategoria in kategoriak:
+                print('A kategória már létezik')
+                adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
+                break
+            else:
+                print(f'Új kategória létrehozva: {adat_bevital_kategoria}')
+                kategoriak.append(adat_bevital_kategoria)
+                break
+
+                ## nincs kész
+
         adat_bevitel_datum = input('Kérem adja meg a dátumot (minta: 2025-05-14) (Mai dátum: ENTER): ').strip()
 
         if adat_bevitel_datum == '':
@@ -66,7 +90,8 @@ while True:
         uj_koltseg = {
             'költség_neve': adat_bevitel_leiras,
             'költség_dátuma': adat_bevitel_datum,
-            'költség_ára': adat_bevitel_ar
+            'költség_ára': adat_bevitel_ar,
+            'költség_kategoria': adat_bevitel_ar
         }           
         koltsegek.append(uj_koltseg)
         uj_koltseg = {}

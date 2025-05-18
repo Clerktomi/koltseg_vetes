@@ -75,6 +75,8 @@ while True:
                 print('A kategóra sikeresen létrehozva!')
                 print()
                 kategoriak.append(adat_bevital_kategoria)
+                with open ('kategoriak.txt','a',encoding='utf-8') as file_add:
+                    print(f'{adat_bevital_kategoria}',end='\n',file=file_add)
                 break
 
                 ## nincs kész

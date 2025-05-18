@@ -88,7 +88,15 @@ while True:
             adat_bevitel_datum = now.strftime('%Y-%m-%d')
             print('\nA mai dátum sikeresen el lett mentve!\n')
 
-        adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
+        while True:
+            try:
+                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
+                break
+            except ValueError:
+                print()
+                print(f'Hibás formátum! kérem egész számot adjon meg!')
+                print()
+                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
         print()   
         uj_koltseg = {
             'költség_neve': adat_bevitel_leiras,

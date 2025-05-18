@@ -1,0 +1,4 @@
+billenytyüzet;2025-05-18;15000;elektronika
+lidl;2025-05-18;25000;bolt
+telefon;2025-05-18;150000;elektronika
+lidl;2025-05-18;24000;bolt

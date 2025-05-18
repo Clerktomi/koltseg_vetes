@@ -2,7 +2,8 @@ from datetime import datetime
 koltsegek = []
 koltseg = {}
 
-kategoriak = ['utazás','élelmiszer','hobbi']  
+kategoriak = []  
+kategoria = {}
 
 with open('data.txt','r',encoding='utf-8') as file_rd:
     for sor in file_rd:
@@ -14,6 +15,11 @@ with open('data.txt','r',encoding='utf-8') as file_rd:
         koltsegek.append(koltseg)
         koltseg = {}
 
+with open('kategoriak.txt','r',encoding='utf-8') as file_rd:
+    for sor in file_rd:
+        data = sor.split('\n')
+        kategoriak.append(data[0])
+        
 honapok = [
     "január", "február", "március", "április", "május", "június",
     "július", "augusztus", "szeptember", "október", "november", "december"
@@ -58,22 +64,16 @@ while True:
         print()
         adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy): ').strip()
         print()
+        adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
+        print()
         while True:
-            adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
-            
-            if adat_bevital_kategoria == 'kategoria':
-                print('\nElérhető kategóriák:')
-                for kategoria in kategoriak:
-                    print(f'{kategoria}')
+            if adat_bevital_kategoria in kategoriak:
+                print('A kategória sikeresen ki választva! (már létezik)')
                 print()
-                continue 
-            
-            while adat_bevital_kategoria in kategoriak:
-                print('A kategória már létezik')
-                adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
                 break
             else:
-                print(f'Új kategória létrehozva: {adat_bevital_kategoria}')
+                print('A kategóra sikeresen létrehozva!')
+                print()
                 kategoriak.append(adat_bevital_kategoria)
                 break
 
@@ -86,17 +86,18 @@ while True:
             adat_bevitel_datum = now.strftime('%Y-%m-%d')
             print('\nA mai dátum sikeresen el lett mentve!\n')
 
-        adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))   
+        adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
+        print()   
         uj_koltseg = {
             'költség_neve': adat_bevitel_leiras,
             'költség_dátuma': adat_bevitel_datum,
             'költség_ára': adat_bevitel_ar,
-            'költség_kategoria': adat_bevitel_ar
+            'költség_kategoria': adat_bevital_kategoria
         }           
         koltsegek.append(uj_koltseg)
         uj_koltseg = {}
         with open('data.txt','a',encoding='utf-8') as file_add:
-            print(f'{adat_bevitel_leiras};{adat_bevitel_datum};{adat_bevitel_ar}', file=file_add)
+            print(f'{adat_bevitel_leiras};{adat_bevitel_datum};{adat_bevitel_ar};{adat_bevital_kategoria}', file=file_add)
 
     elif muvelet == 'eszközök':
         print()
@@ -163,6 +164,11 @@ while True:
                     print()
                     print(f'Erre költött ezen a napon: {datum_kereso} | {elem['költség_neve']} {elem['költség_ára']}Ft.')
                     print()
+        elif eszkoz == 'exit':
+            print()
+            print(f"Sikeres kilépés!")
+            print()
+            break
         elif eszkoz == 'legdrágább':
             print()
             ledragabb_dolog = -100

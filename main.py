@@ -84,7 +84,7 @@ while True:
             for_sure = input('Biztosan ezt az elemet szeretné szerkeszteni? (igen / nem): ').lower().strip()
         
         if for_sure == 'igen':
-            koltsegek.pop(valaszt)
+            koltsegek.pop(koltsegek[valaszt])
             print()
 
             adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy)📊: ').strip()

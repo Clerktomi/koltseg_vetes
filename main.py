@@ -69,9 +69,9 @@ while True:
                 print()
     elif muvelet == '+':
         print()
-        adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy): ').strip()
+        adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy)📊: ').strip()
         print()
-        adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria): ').strip().lower()
+        adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria)🏷️: ').strip().lower()
         print()
         while True:
             if adat_bevital_kategoria in kategoriak:
@@ -88,7 +88,7 @@ while True:
 
                 ## nincs kész
 
-        adat_bevitel_datum = input('Kérem adja meg a dátumot (minta: 2025-05-14) (Mai dátum: ENTER): ').strip()
+        adat_bevitel_datum = input('Kérem adja meg a dátumot (minta: 2025-05-14) (Mai dátum: ENTER)📆: ').strip()
 
         if adat_bevitel_datum == '':
             now = datetime.now()
@@ -97,13 +97,13 @@ while True:
 
         while True:
             try:
-                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
+                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
                 break
             except ValueError:
                 print()
-                print(f'Hibás formátum! kérem egész számot adjon meg!')
+                print(f'Hibás formátum! kérem egész számot adjon meg!💥')
                 print()
-                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban: '))
+                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
         print()   
         uj_koltseg = {
             'költség_neve': adat_bevitel_leiras,
@@ -118,19 +118,18 @@ while True:
 
     elif muvelet == 'eszközök':
         print()
-        print('Eddigi költségek kiírása: költségek')
+        print('Eddigi költségek kiírása: (költségek)💵')
         print()
-        print(f'Meglévő költség keresése: keres')
+        print(f'Meglévő költség keresése: (keres)🔎')
         print()
-        print('Eddigi legdrágább vásárlás kiírása: legdrágább')
+        print('Eddigi legdrágább vásárlás kiírása: (legdrágább💎')
         print()
-        print('Egy adott napra való keresés: kereső')
+        print('Egy adott napra való keresés: (kereső)🔎')
+        print()
+        print('Az átlag költség kiszámítása: (átlag)📐')
         print()
         print()
-        print('Az átlag költség kiszámítása: átlag')
-        print()
-        print()
-        print('Az havi költség keresése: hónap')
+        print('Az havi költség keresése: (hónap)🎯')
         print()
         eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
         print()
@@ -138,14 +137,14 @@ while True:
             print(f'')
             print(f'Nem megfelelő művelet!')
             print(f'')
-            eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
+            eszkoz = input('Kérem válasszon műveletet (kilépés: exit)💥: ').strip().lower()
             print(f'')
         if eszkoz == '':
             print(f'Sikeres kilépés!')
             print()
             break
         elif eszkoz == 'keres':
-            keresett_vasarlas = input('Kérem adja meg a vásrás nevét: ').lower().strip()
+            keresett_vasarlas = input('Kérem adja meg a vásrás nevét🛒: ').lower().strip()
             for elem in koltsegek:
                 if elem['költség_neve'] == keresett_vasarlas:
                     print(f'A költség leírása: {elem['költség_neve']} dátum: {elem['költség_dátuma']} {elem['költség_ára']}')

@@ -1,4 +1,5 @@
 from datetime import datetime
+import csv
 koltsegek = []
 koltseg = {}
 
@@ -14,6 +15,12 @@ with open('data.txt','r',encoding='utf-8') as file_rd:
         koltseg['költség_kategoria'] = data[3]
         koltsegek.append(koltseg)
         koltseg = {}
+
+with open('koltseg.csv','w',encoding='utf-8-sig') as file_write:
+    print('Költség neve;Dátum;Ár;Kategoria',file=file_write)
+    for elem in koltsegek:
+        date_rem = elem['költség_dátuma'].replace('-','.')
+        print(f'{elem['költség_neve']};{date_rem};{int(elem['költség_ára'])};{elem['költség_kategoria']}',file=file_write)
 
 with open('kategoriak.txt','r',encoding='utf-8') as file_rd:
     for sor in file_rd:

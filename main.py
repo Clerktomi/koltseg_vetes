@@ -40,19 +40,19 @@ for i in range(1,13):
 # print([honapok[1]],honapok_szam[1])    
 
 print()
-print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (készítette: Szabó Tamás ©)')
+print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (készítette: 👑 Szabó Tamás 👑 ©)')
 print()
 
 if len(koltsegek) == 0:
     print(f'Jelenleg nincsenek költségei!')
     print()
 while True:
-    muvelet = input('Kérem válasszon! (Új költség felvétele +) (Meglévő költség kivonása -) (Meglévő költségek kiírása ENTER) (eszközök) (kilépés: exit): ').strip()
+    muvelet = input('Kérem válasszon! (Új költség felvétele +)🟢 (Meglévő költség kivonása -)🔴 (Meglévő költségek kiírása ENTER)↩️ (kilépés: exit)🔚: ').strip()
     while muvelet not in ['+','-','','eszközök','exit']:
         print(f'')
         print(f'Nem megfelelő művelet!')
         print(f'')
-        muvelet = input('Kérem válasszon! (Új költség felvétele +) (Meglévő költség kivonása -) (Meglévő költségek kiírása ENTER) (kilépés: exit): ').strip()
+        muvelet = input('Kérem válasszon! (Új költség felvétele +)🟢 (Meglévő költség kivonása -)🔴 (Meglévő költségek kiírása ENTER)↩️ (kilépés: exit)🔚: ').strip()
     if muvelet == 'exit':
         print()
         print('Sikeres kilépés!')

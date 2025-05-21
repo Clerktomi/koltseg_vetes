@@ -99,10 +99,10 @@ while True:
             print()
 
             if adat_bevital_kategoria in kategoriak:
-                print('A kategória sikeresen kiválasztva! (már létezik)')
+                print('A kategória sikeresen kiválasztva✅! (már létezik)')
                 print()
             else:
-                print('A kategória sikeresen létrehozva!')
+                print('A kategória sikeresen létrehozva✅!')
                 print()
                 kategoriak.append(adat_bevital_kategoria)
                 with open('kategoriak.txt', 'a', encoding='utf-8') as file_add:
@@ -113,7 +113,7 @@ while True:
             if adat_bevitel_datum == '':
                 now = datetime.now()
                 adat_bevitel_datum = now.strftime('%Y-%m-%d')
-                print('\nA mai dátum sikeresen el lett mentve!\n')
+                print('\nA mai dátum sikeresen el lett mentve✅!\n')
 
             while True:
                 try:
@@ -155,11 +155,11 @@ while True:
         print()
         while True:
             if adat_bevital_kategoria in kategoriak:
-                print('A kategória sikeresen ki választva! (már létezik)')
+                print('A kategória sikeresen ki választva✅! (már létezik)')
                 print()
                 break
             else:
-                print('A kategóra sikeresen létrehozva!')
+                print('A kategóra sikeresen létrehozva✅!')
                 print()
                 kategoriak.append(adat_bevital_kategoria)
                 with open ('kategoriak.txt','a',encoding='utf-8') as file_add:
@@ -173,7 +173,7 @@ while True:
         if adat_bevitel_datum == '':
             now = datetime.now()
             adat_bevitel_datum = now.strftime('%Y-%m-%d')
-            print('\nA mai dátum sikeresen el lett mentve!\n')
+            print('\nA mai dátum sikeresen el lett mentve!✅\n')
 
         while True:
             try:
@@ -208,10 +208,9 @@ while True:
         print()
         print('Az átlag költség kiszámítása: (átlag)📐')
         print()
-        print()
         print('Az havi költség keresése: (hónap)🎯')
         print()
-        eszkoz = input('Kérem válasszon műveletet (kilépés: exit): ').strip().lower()
+        eszkoz = input('Kérem válasszon műveletet (kilépés: exit)📱: ').strip().lower()
         print()
         while eszkoz not in ['költségek','','legdrágább','kereső','átlag','hónap','keres']:
             print(f'')
@@ -220,7 +219,7 @@ while True:
             eszkoz = input('Kérem válasszon műveletet (kilépés: exit)💥: ').strip().lower()
             print(f'')
         if eszkoz == '':
-            print(f'Sikeres kilépés!')
+            print(f'Sikeres kilépés✅!')
             print()
             break
         elif eszkoz == 'keres':
@@ -262,7 +261,7 @@ while True:
                     print()
         elif eszkoz == 'exit':
             print()
-            print(f"Sikeres kilépés!")
+            print(f"Sikeres kilépés!✅")
             print()
             break
         elif eszkoz == 'legdrágább':

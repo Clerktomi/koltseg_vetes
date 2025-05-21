@@ -58,7 +58,8 @@ while True:
         print('Sikeres kilépés!')
         break
     elif muvelet == 'szerkesztés':
-        print('A költségek:')
+        print()
+        print('A költségek 💰:')
         print()
         
         for i in range(len(koltsegek)):
@@ -74,17 +75,21 @@ while True:
         if valaszt < 0 or valaszt >= len(koltsegek):
             print(f'\nHibás sorszám! Max sorszám: {len(koltsegek) - 1}\n')
             continue
-
+        print()
         print(f'    A költség leírása: {koltsegek[valaszt]["költség_neve"]:<9} | dátum: {koltsegek[valaszt]["költség_dátuma"]:<9} | Ár: {koltsegek[valaszt]["költség_ára"]:<7} | kategória: {koltsegek[valaszt]["költség_kategoria"]:<12} | sorszám: {valaszt}')
         
+        print()
         for_sure = input('Biztosan ezt az elemet szeretné szerkeszteni? (igen / nem): ').lower().strip()
+        print()
         
         while for_sure not in ['igen', 'nem']:
             print('\nNem megfelelő művelet (igen / nem)\n')
+            print()
             for_sure = input('Biztosan ezt az elemet szeretné szerkeszteni? (igen / nem): ').lower().strip()
+            print()
         
         if for_sure == 'igen':
-            koltsegek.pop(koltsegek[valaszt])
+            koltsegek.pop(valaszt)
             print()
 
             adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy)📊: ').strip()
@@ -95,8 +100,10 @@ while True:
 
             if adat_bevital_kategoria in kategoriak:
                 print('A kategória sikeresen kiválasztva! (már létezik)')
+                print()
             else:
                 print('A kategória sikeresen létrehozva!')
+                print()
                 kategoriak.append(adat_bevital_kategoria)
                 with open('kategoriak.txt', 'a', encoding='utf-8') as file_add:
                     print(f'{adat_bevital_kategoria}', end='\n', file=file_add)
@@ -111,6 +118,7 @@ while True:
             while True:
                 try:
                     adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
+                    print()
                     break
                 except ValueError:
                     print('\nHibás formátum! Kérem egész számot adjon meg!💥\n')
@@ -124,8 +132,10 @@ while True:
             
             koltsegek.append(uj_koltseg)
 
-            with open('data.txt', 'a', encoding='utf-8') as file_add:
-                print(f'{adat_bevitel_leiras};{adat_bevitel_datum};{adat_bevitel_ar};{adat_bevital_kategoria}', file=file_add)
+            #ujra iras
+            with open('data.txt','w',encoding='utf-8') as file_wr:
+                for elem in koltsegek:
+                    print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem["költség_ára"]};{elem['költség_kategoria']}', file=file_wr)
 
     elif muvelet == '':
         if len(koltsegek) == 0:
@@ -270,6 +280,7 @@ while True:
             for elem in koltsegek:
                 eddigi_koltesegek += elem['költség_ára']
             print(f'Eddig költött pénz: {eddigi_koltesegek}Ft.')
+            print()
     else:
         for koltseg in koltsegek:
             print(f'A költség leírása: {koltseg['költség_neve']} dátum: {koltseg['költség_dátuma']} {koltseg['költség_ára']}')
@@ -295,7 +306,5 @@ while True:
                         else:
                             print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}',file=file_remove)
                 break
-print()
-print(F'Sikeres kilépés!')
 print()
 print(F'köszönjük hogy minket választott!')

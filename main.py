@@ -1,3 +1,4 @@
+import random
 from datetime import datetime
 import csv
 koltsegek = []
@@ -5,6 +6,9 @@ koltseg = {}
 
 kategoriak = []  
 kategoria = {}
+
+abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 with open('data.txt','r',encoding='utf-8') as file_rd:
     for sor in file_rd:
@@ -40,7 +44,7 @@ for i in range(1,13):
 # print([honapok[1]],honapok_szam[1])    
 
 print()
-print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (készítette: 👑 Szabó Tamás 👑 ©)')
+print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (minen lehetőség megtekintéséhet: Beálítások ⚙️) (készítette: 👑 Szabó Tamás 👑 ©)')
 print()
 
 if len(koltsegek) == 0:
@@ -48,7 +52,7 @@ if len(koltsegek) == 0:
     print()
 while True:
     muvelet = input('Kérem válasszon! (Új költség felvétele +)🟢 (Meglévő költség kivonása -)🔴 (meglévő költség szerkesztése: szerkesztés) (Meglévő költségek kiírása ENTER)↩️ (kilépés: exit)🔚: ').strip()
-    while muvelet not in ['+','-','','eszközök','exit','szerkesztés']:
+    while muvelet not in ['+','-','','eszközök','exit','szerkesztés','Beálítások','törlés']:
         print(f'')
         print(f'Nem megfelelő művelet!')
         print(f'')
@@ -57,6 +61,49 @@ while True:
         print()
         print('Sikeres kilépés!')
         break
+    elif muvelet == 'törlés':
+        print()
+        delete = input('Bizosan szeretne minden elemet törölni (igen / nem)(kilépés: exit) ? 🚧: ').lower().strip()
+        while delete not in ['igen','nem','exit']:
+            print('nem megfelelő művelet!💥')
+            delete = input('Bizosan szeretne minden elemet törölni (igen / nem)(kilépés: exit) ? 🚧: ').lower().strip()
+        if delete == 'exit':
+            print()
+            print(f'Sikeres kilépés ✅!')
+            print()
+            break
+        elif delete == 'nem':
+            print()
+            print(f'Sikeres kilépés ✅!')
+            print()
+            break
+        else:
+            random_karakterek = ''
+            while len(random_karakterek) < 5:
+                karakter = random.choice(abc)
+                if karakter not in random_karakterek:
+                    random_karakterek += karakter
+            print()
+            bot = input(f'Kérem erősitse meg ezt a kódot: {random_karakterek}: ')
+            while random_karakterek != bot:
+                print()
+                print('hiba történt!❌')
+                print()
+                bot = input(f'Kérem erősitse meg ezt a kódot: {random_karakterek}: ')
+            with open('data.txt','w',encoding='utf-8') as file_del:
+                continue
+            with open('koltseg.csv','w',encoding='utf-8') as file_del:
+                continue
+            with open('kategoriak.txt','w',encoding='utf-8') as file_del:
+                continue
+            print()
+            print('A Minden elem törölve lett! ✅')
+            print()
+    elif muvelet == 'Beálítások':
+        print()
+        print(f'A műveletek leírása ⬇️:')
+        print()
+        print('Gyors törlés (minden elemet töröl⚠️): (törlés)')
     elif muvelet == 'szerkesztés':
         print()
         print('A költségek 💰:')

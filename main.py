@@ -44,7 +44,7 @@ for i in range(1,13):
 # print([honapok[1]],honapok_szam[1])    
 
 print()
-print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (minen lehetőség megtekintéséhet: Beálítások ⚙️) (készítette: 👑 Szabó Tamás 👑 ©)')
+print(f'Üdvözöljük A költség vezető alkalmazásunkban, lehetőségek kiírása: (eszközök) (minen lehetőség megtekintéséhez: Beálítások ⚙️) (készítette: 👑 Szabó Tamás 👑 ©)')
 print()
 
 if len(koltsegek) == 0:
@@ -340,12 +340,12 @@ while True:
                         print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}',file=file_remove)
                     else:
                         print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}')
-                        y_or_n = input('Ezt az elemet szertné törlni? (igen / nem): ').lower().strip()
+                        y_or_n = input('Ezt az elemet szertné törlni? (igen / nem) 🗳️: ').lower().strip()
                         while y_or_n not in ['igen','nem']:
                             print()
-                            print(f'nem megfelelő formátum!')
+                            print(f'nem megfelelő formátum!❌')
                             print()
-                            y_or_n = input('Ezt az elemet szertné törlni? (igen / nem): ').lower().strip()
+                            y_or_n = input('Ezt az elemet szertné törlni? (igen / nem) 🗳️: ').lower().strip()
                             print()
                         if y_or_n == 'igen':
                             continue
@@ -353,4 +353,4 @@ while True:
                             print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}',file=file_remove)
                 break
 print()
-print(F'köszönjük hogy minket választott!')
+print(F'köszönjük hogy minket választott! 👑')

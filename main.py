@@ -250,7 +250,7 @@ while True:
         print()
         print(f'Meglévő költség keresése: (keres)🔎')
         print()
-        print('Eddigi legdrágább vásárlás kiírása: (legdrágább💎)')
+        print('Eddigi legdrágább vásárlás kiírása: (legdrágább💎')
         print()
         print('Egy adott napra való keresés: (kereső)🔎')
         print()

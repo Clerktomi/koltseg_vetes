@@ -1,4 +1,7 @@
 import random
+import bcrypt
+import getpass
+import pwinput
 from datetime import datetime
 import csv
 koltsegek = []
@@ -9,6 +12,50 @@ kategoria = {}
 
 abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
  'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+fiok = {}
+
+with open('fiok.txt', 'r', encoding='utf-8') as file_rd:
+    for sor in file_rd:
+        data = sor.strip().split(';')
+        if len(data) >= 2:
+            fiok['username'] = data[0]
+            fiok['password'] = data[1]
+
+if len(fiok) == 0:
+    print()
+    print('Kérjük regisztráljon! 🔥')
+    print()
+    username = input('Felhasználónév: ')
+    print()
+    password = pwinput.pwinput(prompt='Jelszó: ', mask='*')
+    print()
+    password_bytes = password.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    with open('fiok.txt', 'w', encoding='utf-8') as f:
+        f.write(f"{username};{hashed.decode('utf-8')}\n")
+    print("Regisztráció sikeres!")
+
+else:
+    while True:
+        print()
+        print('Kérjük jelentkezzen be! 🔥')
+        print()
+        username_log = input('Felhasználónév: ')
+        print()
+        password_log = pwinput.pwinput(prompt='Jelszó: ', mask='*')
+        password_log_bytes = password_log.encode('utf-8')
+
+        if username_log == fiok.get('username') and bcrypt.checkpw(password_log_bytes, fiok.get('password').encode('utf-8')):
+            print()
+            print('Sikeres bejelentkezés! 🔥')
+            print()
+            break
+        else:
+            print()
+            print('Hibás felhasználónév vagy jelszó! 🚫')
+            print()
 
 with open('data.txt','r',encoding='utf-8') as file_rd:
     for sor in file_rd:

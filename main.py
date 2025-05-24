@@ -6,7 +6,10 @@ from datetime import datetime
 import csv
 koltsegek = []
 koltseg = {}
-
+valuta = ''
+with open('valuta.txt','r',encoding='utf-8') as file_r:
+    for sor in file_r:
+        valuta = sor
 kategoriak = []  
 kategoria = {}
 
@@ -100,7 +103,7 @@ if len(koltsegek) == 0:
     print()
 while True:
     muvelet = input('Kérem válasszon! (Új költség felvétele +)🟢 (Meglévő költség kivonása -)🔴 (meglévő költség szerkesztése: szerkesztés) (Meglévő költségek kiírása ENTER)↩️ (kilépés: exit)🔚: ').strip()
-    while muvelet not in ['+','-','','eszközök','exit','szerkesztés','Beálítások','törlés']:
+    while muvelet not in ['+','-','','eszközök','exit','szerkesztés','Beálítások','törlés','valuta']:
         print(f'')
         print(f'Nem megfelelő művelet!')
         print(f'')
@@ -109,6 +112,13 @@ while True:
         print()
         print('Sikeres kilépés!')
         break
+    elif muvelet == 'valuta':
+        print()
+        new_valta = input(f'Kérem adja meg az új valutát (A régi: {valuta}): ')
+        valuta = new_valta
+        with open('valuta.txt','w',encoding='utf-8') as file_wr:
+            print(new_valta,file=file_wr)
+        print()
     elif muvelet == 'törlés':
         print()
         delete = input('Bizosan szeretne minden elemet törölni (igen / nem)(kilépés: exit) ? 🚧: ').lower().strip()
@@ -152,6 +162,9 @@ while True:
         print(f'A műveletek leírása ⬇️:')
         print()
         print('Gyors törlés (minden elemet töröl⚠️): (törlés)')
+        print()
+        print('Valuta át álítása: (valuta)💰')
+        print()
     elif muvelet == 'szerkesztés':
         print()
         print('A költségek 💰:')
@@ -212,7 +225,7 @@ while True:
 
             while True:
                 try:
-                    adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
+                    adat_bevitel_ar = int(input(f'Kérem adja meg a(z) árat {valuta} ban/ben💰: '))
                     print()
                     break
                 except ValueError:
@@ -272,13 +285,13 @@ while True:
 
         while True:
             try:
-                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
+                adat_bevitel_ar = int(input(f'Kérem adja meg a(z) árat {valuta} ban/ben💰: '))
                 break
             except ValueError:
                 print()
                 print(f'Hibás formátum! kérem egész számot adjon meg!💥')
                 print()
-                adat_bevitel_ar = int(input('Kérem adja meg a(z) árat forintban💰: '))
+                adat_bevitel_ar = int(input(f'Kérem adja meg a(z) árat {valuta} ban/ben💰: '))
         print()   
         uj_koltseg = {
             'költség_neve': adat_bevitel_leiras,
@@ -343,7 +356,7 @@ while True:
                     print()
                     print(f'A költség leírása: {elem['költség_neve']} dátum: {elem['költség_dátuma']} {elem['költség_ára']}')
             print('- '*15)
-            print(f'Összesen: {ossz_koltes}Ft.')
+            print(f'Összesen: {ossz_koltes}{valuta}.')
             print()
         elif eszkoz == 'kereső':
             now = datetime.now()
@@ -352,7 +365,7 @@ while True:
             for elem in koltsegek:
                 if elem['költség_dátuma'] == datum_kereso:
                     print()
-                    print(f'Erre költött ezen a napon: {datum_kereso} | {elem['költség_neve']} {elem['költség_ára']}Ft.')
+                    print(f'Erre költött ezen a napon: {datum_kereso} | {elem['költség_neve']} {elem['költség_ára']}{valuta}.')
                     print()
         elif eszkoz == 'exit':
             print()
@@ -367,13 +380,13 @@ while True:
                 if elem['költség_ára'] > ledragabb_dolog:
                     ledragabb_dolog = elem['költség_ára']
                     ledragabb_dict = elem
-            print(f'Legdrágább költekezés: {ledragabb_dict['költség_neve']} - {ledragabb_dict['költség_ára']}Ft.')
+            print(f'Legdrágább költekezés: {ledragabb_dict['költség_neve']} - {ledragabb_dict['költség_ára']}{valuta}.')
             print()
         else:
             eddigi_koltesegek = 0
             for elem in koltsegek:
                 eddigi_koltesegek += elem['költség_ára']
-            print(f'Eddig költött pénz: {eddigi_koltesegek}Ft.')
+            print(f'Eddig költött pénz: {eddigi_koltesegek}{valuta}.')
             print()
     else:
         for koltseg in koltsegek:

@@ -400,7 +400,7 @@ while True:
                     if elem['költség_neve'] != torles:
                         print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}',file=file_remove)
                     else:
-                        print(f'{elem['költség_neve']};{elem['költség_dátuma']};{elem['költség_ára']}')
+                        print(f'{elem['költség_neve']} {elem['költség_dátuma']} {elem['költség_ára']}')
                         y_or_n = input('Ezt az elemet szertné törlni? (igen / nem) 🗳️: ').lower().strip()
                         while y_or_n not in ['igen','nem']:
                             print()

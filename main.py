@@ -32,6 +32,13 @@ if len(fiok) == 0:
     username = input('Felhasználónév: ')
     print()
     password = pwinput.pwinput(prompt='Jelszó: ', mask='*')
+    password_again = pwinput.pwinput(prompt='Jelszó ismét: ', mask='*')
+    while password != password_again:
+        print()
+        print('A jelszavak nem eggyeznek!')
+        print()
+        password = pwinput.pwinput(prompt='Jelszó: ', mask='*')
+        password_again = pwinput.pwinput(prompt='Jelszó ismét: ', mask='*')
     print()
     password_bytes = password.encode('utf-8')
     salt = bcrypt.gensalt()

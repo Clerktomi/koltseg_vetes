@@ -260,7 +260,7 @@ while True:
         else:
             for koltseg in koltsegek:
                 print()
-                print(f'A költség leírása: {koltseg['költség_neve']} | dátum: {koltseg['költség_dátuma']} | Ár: {koltseg['költség_ára']} | kategória: {koltseg['költség_kategoria']}')
+                print(f'A költség leírása: {koltseg['költség_neve']:<17} | dátum: {koltseg['költség_dátuma']:<10} | Ár: {koltseg['költség_ára']:<6} | kategória: {koltseg['költség_kategoria']:<15}')
                 print()
     elif muvelet == '+':
         print()
@@ -393,7 +393,7 @@ while True:
             eddigi_koltesegek = 0
             for elem in koltsegek:
                 eddigi_koltesegek += elem['költség_ára']
-            print(f'Eddig költött pénz: {eddigi_koltesegek}{valuta}.')
+            print(f'Eddig költött pénz: {eddigi_koltesegek}{valuta}. 💳')
             print()
     else:
         for koltseg in koltsegek:

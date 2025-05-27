@@ -207,10 +207,10 @@ while True:
             koltsegek.pop(valaszt)
             print()
 
-            adat_bevitel_leiras = input('Kérem adja meg a költség leírását (pl. telefon, repjegy)📊: ').strip()
+            adat_bevitel_leiras = input('Kérem adja meg a(z) (új) költség leírását (pl. telefon, repjegy)📊: ').strip()
             print()
             
-            adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák: kategoria)🏷️: ').strip().lower()
+            adat_bevital_kategoria = input('Kérem adja meg a költség kategóriáját (meglévő kategóriák kiíratása: kategoria)🏷️: ').strip().lower()
             print()
 
             if adat_bevital_kategoria in kategoriak:

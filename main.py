@@ -255,7 +255,7 @@ while True:
     elif muvelet == '':
         if len(koltsegek) == 0:
             print()
-            print(f'Még nem lett költség felvéve!')
+            print(f'Még nem lett költség felvéve! 💡')
             print()
         else:
             for koltseg in koltsegek:
@@ -350,7 +350,7 @@ while True:
             for elem in koltsegek:
                 osz_koltseg += elem['költség_ára']
                 db += 1
-            print(f'Az átlag költsége: {round((osz_koltseg / db),2)}')
+            print(f'Az átlag költsége: {round((osz_koltseg / db),2)} 💸')
             print()
         elif eszkoz == 'hónap':
             print()
